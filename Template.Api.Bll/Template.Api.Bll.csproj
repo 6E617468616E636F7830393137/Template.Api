@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E468F86-807D-4C18-9E13-E8F0ABC52C4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Template.Api.Bll</RootNamespace>
+    <AssemblyName>Template.Api.Bll</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Log4net.Helper.Logging">
+      <HintPath>..\Template.Api.Assemblies\Log4net.Helper.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuildInformation\BuildData.cs" />
+    <Compile Include="BuildInformation\IBuildData.cs" />
+    <Compile Include="BusinessTemplate\Class.cs" />
+    <Compile Include="BusinessTemplate\IClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Template.Api.Dal\Template.Api.Dal.csproj">
+      <Project>{abe21e81-321d-4d5e-bf9a-c671cc5a4ec7}</Project>
+      <Name>Template.Api.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Api.Ent\Template.Api.Ent.csproj">
+      <Project>{2d67d2e9-2bb6-4a6c-b8fb-a491767cdcb5}</Project>
+      <Name>Template.Api.Ent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Api.Dto\Template.Api.Dto.csproj">
+      <Project>{43dac672-436a-4704-b711-117cc3c83bba}</Project>
+      <Name>Template.Api.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Api.Sal\Template.Api.Sal.csproj">
+      <Project>{6669e78f-f63b-4dfb-b8a1-b03c9a8b14d3}</Project>
+      <Name>Template.Api.Sal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
