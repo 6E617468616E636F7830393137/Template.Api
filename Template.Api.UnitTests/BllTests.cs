@@ -6,16 +6,18 @@ namespace Template.Api.UnitTests
     [TestClass]
     public class BllTests
     {
-        private IClass Class;
-        public void InitTest(IClass IClass)
+        //private IClass _Class;
+        private Class _class;
+        [TestInitialize]
+        public void Initialize()
         {
-            this.Class = IClass;
+            //_Class = Class;
         }
         [TestMethod]
         public void TestMethodIClass()
         {
-            InitTest(this.Class);
-            var data = this.Class.GetInfo();
+            _class = new Class();
+            var x = _class.GetInfo();
         }
     }
 }

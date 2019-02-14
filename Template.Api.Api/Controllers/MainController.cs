@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Web.Http;
 using Log4net.Helper.Logging;
+using Template.Api.Api.Configuration;
 using Template.Api.Bll.BuildInformation;
 using Template.Api.Bll.BusinessTemplate;
 
@@ -13,11 +14,15 @@ namespace Template.Api.Api.Controllers
         private IClass Class { get; set; }
         public MainController()
         { }
-        public MainController(IClass Class, IBuildData buildData) 
-            : base (buildData)            
+        public MainController(
+            IClass Class, 
+            IBuildData buildData,
+            ISettings settings) 
+            : base (buildData, settings)            
         {
             this.Class = Class;
             this.buildData = buildData;
+            this.settings = settings;
             Logger.Info($": : : Calling MainController Constructor : : :");            
         }
         [Route("BuildVersion")]
@@ -25,7 +30,8 @@ namespace Template.Api.Api.Controllers
         public IHttpActionResult BuildVersion()
         {            
             return Ok($"{buildData.getBuildInformation().BuildVersion} " +
-                $"({buildData.getBuildInformation().BuildDate})");            
+                $"({buildData.getBuildInformation().BuildDate}) " +
+                $"{settings.DisableSwagger}");            
         }
         [Route("HelloWorld")]
         [HttpPost]

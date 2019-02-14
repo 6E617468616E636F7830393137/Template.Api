@@ -21,14 +21,18 @@ namespace Template.Api.Api.Dependency_Injection
         }
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
+            /// <summary>
+            /// TODO: Every class has to be registered
+            /// </summary>
             //Register your Web API controllers
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
+            // Presentation Layer class registry
+            builder.RegisterType<Configuration.Settings>().As<Configuration.ISettings>();
             // Buisiness Layer class registry
             builder.RegisterType<Bll.BusinessTemplate.Class>().As<Bll.BusinessTemplate.IClass>();
             builder.RegisterType<Bll.BuildInformation.BuildData>().As<Bll.BuildInformation.IBuildData>();
-            //builder.RegisterType<Controllers.BaseController>().As<Controllers.BaseController>();
-
+            
             // Set the dependency resolve to be Autofac
             container = builder.Build();
             return container;

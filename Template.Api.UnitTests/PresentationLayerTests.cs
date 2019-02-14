@@ -38,7 +38,12 @@ namespace Template.Api.UnitTests
         [TestMethod]
         public void OptionsControllerTest()
         {
+            // Arrange
+            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            // Act
             HttpResponseMessage responseMessage = InitController().Options();
+            // Assert
+            Assert.AreEqual(responseMessage.IsSuccessStatusCode, true);
         }
         // Additional Extension Methods
         public Api.Controllers.MainController InitController()

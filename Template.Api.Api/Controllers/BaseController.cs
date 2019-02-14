@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using Template.Api.Api.Configuration;
 
 namespace Template.Api.Api.Controllers
 {
@@ -7,12 +8,12 @@ namespace Template.Api.Api.Controllers
     public class BaseController : ApiController
     {
         protected Bll.BuildInformation.IBuildData buildData { get; set; }
-
+        protected ISettings settings { get; set; }
         public BaseController()
         {
 
         }
-        public BaseController(Bll.BuildInformation.IBuildData buildData)
+        public BaseController(Bll.BuildInformation.IBuildData buildData, ISettings settings)
         {
             this.buildData = buildData;
             buildData.setBuidInformation(

@@ -113,6 +113,8 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Dependency_Injection\Container.cs" />
