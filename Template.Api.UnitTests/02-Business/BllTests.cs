@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Template.Api.Bll.BusinessTemplate;
 
-namespace Template.Api.UnitTests
+namespace Template.Api.UnitTests._02_Business
 {
     [TestClass]
     public class BllTests

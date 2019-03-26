@@ -2,6 +2,6 @@
 {
     public class Models
     {
-        public string message { get; set; } = "Hello World";
+        public string message { get; } = "Hello World";
     }
 }
