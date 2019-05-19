@@ -49,8 +49,15 @@ namespace Template.Api.UnitTests._03_Presentation
             // Assert
             Assert.AreEqual(data.DisableSwagger, ConfigurationManager.AppSettings["DisableSwagger"]);
         }
+        [TestMethod]
+        public void BaseControllerTest()
+        {
+            Api.Configuration.ISettings settings = new Api.Configuration.Settings();
+            IBuildData buildData = new BuildData();
+            var controller = new Api.Controllers.BaseController(buildData, settings);
+        }
         // Additional Extension Methods
-        public Api.Controllers.BaseController InitController()
+        private Api.Controllers.BaseController InitController()
         {
             var controller = new Api.Controllers.BaseController();
             var controllerContext = new HttpControllerContext();

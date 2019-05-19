@@ -6,12 +6,12 @@ using System.Net.Http;
 using System.Web.Http.Results;
 using System.Web;
 using Template.Api.Api;
-using System.Web.Http.ExceptionHandling;
+using Template.Api.Bll.BuildInformation;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
 namespace Template.Api.UnitTests._03_Presentation
-{
+{    
     [TestClass]
     public class MainControllerTests
     {
@@ -37,6 +37,15 @@ namespace Template.Api.UnitTests._03_Presentation
             // Not applicable
         }
         [TestMethod]
+        public void MainControllerTest()
+        {
+            Api.Configuration.ISettings settings = new Api.Configuration.Settings();
+            IBuildData buildData = new BuildData();
+            Bll.BusinessTemplate.IClass iClass = new Bll.BusinessTemplate.Class();
+            var controller = new Api.Controllers.MainController(iClass, buildData, settings);
+
+        }        
+        [TestMethod]
         public void OptionsControllerTest()
         {
             // Arrange
@@ -45,14 +54,7 @@ namespace Template.Api.UnitTests._03_Presentation
             HttpResponseMessage responseMessage = InitController().Options();
             // Assert
             Assert.AreEqual(responseMessage.IsSuccessStatusCode, true);
-        }
-        [TestMethod]
-        public void ParentExceptionLoggerTest()
-        {
-            var data = new Template.Api.Api.ParentExceptionLogger();
-            data.Log(new ExceptionLoggerContext(new ExceptionContext(new Exception(), new ExceptionContextCatchBlock("Unit Test", true, false))));
-            Assert.IsNotNull(data);
-        }
+        }        
         [TestMethod]
         public void GetBuildInformationTest()
         {
@@ -110,7 +112,7 @@ namespace Template.Api.UnitTests._03_Presentation
             Assert.AreEqual(outputMessage, responseMessageContent);
         }
         // Additional Extension Methods
-        public Api.Controllers.MainController InitController()
+        private Api.Controllers.MainController InitController()
         {
             var controller = new Api.Controllers.MainController();
             var controllerContext = new HttpControllerContext();
@@ -125,68 +127,6 @@ namespace Template.Api.UnitTests._03_Presentation
             controller.ControllerContext = controllerContext;
             controller.Configuration = configuration;
             return controller;
-        }
-        //public string GetMethodCall(string keyName, string keyValue)
-        //{
-        //    byte[] data;
-        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
-        //        $"{apiUrl}{apiGetMessageUri}"
-        //        );
-        //    request.Method = "GET";
-        //    request.ContentType = contentTypeJson;
-        //    if (keyName != null)
-        //    {
-        //        request.Headers.Add(keyName, keyValue);
-        //    }
-        //    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-        //    {
-        //        data = new byte[response.ContentLength];
-        //        using (Stream stream = response.GetResponseStream())
-        //        {
-        //            int bytesRead = 0;
-        //            while (bytesRead < data.Length)
-        //            {
-        //                bytesRead += stream.Read(data, bytesRead, data.Length);
-        //            }
-        //        }
-        //        Console.WriteLine($"Response : {Encoding.UTF8.GetString(data)}");
-        //        return Encoding.UTF8.GetString(data);
-        //    }
-        //}
-        //public string PostMethodCall(string keyName, string keyValue)
-        //{
-        //    byte[] postBytes;
-        //    HttpWebRequest webReqeust = (HttpWebRequest)HttpWebRequest.Create($"{apiUrl}{apiPostMessageUri}");
-        //    // webrequest.KeepAlive = false;
-        //    // webrequest.AllowWriteStreamBuffering = false;
-        //    // Convert object to string
-
-        //    postBytes = Encoding.ASCII.GetBytes(message);
-
-        //    webReqeust.Method = "POST";
-        //    webReqeust.ContentType = contentTypeJson;
-        //    webReqeust.ContentLength = postBytes.Length;
-        //    if (keyName != null)
-        //    {
-        //        webReqeust.Headers.Add(keyName, keyValue);
-        //    }
-
-        //    using (Stream requestStream = webReqeust.GetRequestStream())
-        //    {
-        //        requestStream.Write(postBytes, 0, postBytes.Length);
-        //    }
-        //    // Get respnose
-        //    using (HttpWebResponse webResponse = (HttpWebResponse)webReqeust.GetResponse())
-        //    {
-        //        string output = "";
-        //        using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
-        //        {
-        //            output = reader.ReadToEnd().Trim();
-        //        }
-        //        var resp = new HttpResponseMessage(HttpStatusCode.OK);
-        //        resp.Content = new StringContent(output, System.Text.Encoding.UTF8, "text/plain");
-        //        return output; //resp.Content.ToString();
-        //    }
-        //}
+        }        
     }
 }

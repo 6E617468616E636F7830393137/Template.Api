@@ -9,12 +9,12 @@ namespace Template.Api.Api
         public override void Log(ExceptionLoggerContext context)
         {
             try
-            {
+            {                
                 Logger.Fatal($"Unhandled exception occurred on server '{Environment.MachineName}' while processing {context.Request.Method.ToString()} for {context.Request.RequestUri.ToString()}", context.Exception);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Unhandled exception occurred on server '{Environment.MachineName}'", context.Exception);
+                Console.WriteLine($"Unhandled exception occurred on server '{Environment.MachineName}'", ex.ToString());
             }
         }
     }

@@ -32,7 +32,9 @@ namespace Template.Api.Api.Dependency_Injection
             // Buisiness Layer class registry
             builder.RegisterType<Bll.BusinessTemplate.Class>().As<Bll.BusinessTemplate.IClass>();
             builder.RegisterType<Bll.BuildInformation.BuildData>().As<Bll.BuildInformation.IBuildData>();
-            
+            // Register Dynamic Assemblies            
+            // var service = Assembly.Load("<DLL_NAME>");
+            // builder.RegisterAssemblyTypes(service).AsImplementedInterfaces();
             // Set the dependency resolve to be Autofac
             container = builder.Build();
             return container;
