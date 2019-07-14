@@ -3,9 +3,9 @@ using Autofac.Integration.WebApi;
 using System.Reflection;
 using System.Web.Http;
 
-namespace Template.Api.Api.Dependency_Injection
+namespace Template.Api.Api
 {
-    public class Container
+    public class DiContainer
     {
         // Create Container Object
         // public static ContainerBuilder builder;

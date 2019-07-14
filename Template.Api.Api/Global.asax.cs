@@ -6,7 +6,7 @@ namespace Template.Api.Api
     {
         protected void Application_Start()
         {
-            Dependency_Injection.Container.Initialize(GlobalConfiguration.Configuration);
+            DiContainer.Initialize(GlobalConfiguration.Configuration);
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

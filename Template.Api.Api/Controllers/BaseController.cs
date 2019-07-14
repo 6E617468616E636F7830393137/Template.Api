@@ -11,7 +11,7 @@ namespace Template.Api.Api.Controllers
         public ISettings Settings { get; set; }
         public BaseController()
         {
-            this.Settings = Dependency_Injection.Container.container.Resolve<ISettings>();
+            this.Settings = DiContainer.container.Resolve<ISettings>();
         }
         public BaseController(ISettings settings)
         {

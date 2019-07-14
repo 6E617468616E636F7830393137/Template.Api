@@ -4,6 +4,7 @@ using System.Web.Http.Controllers;
 using System.Net.Http;
 using System.Reflection;
 using System.Configuration;
+using Template.Api.Api;
 
 namespace Template.Api.UnitTests._03_Presentation
 {
@@ -14,7 +15,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void GetBuildDataTest()
         {
             // Arrange
-            Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act
             var baseController = InitController();
             
@@ -27,7 +28,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void GetSettings()
         {
             // Arrange
-            Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act
             Assembly assembly = typeof(Api.Controllers.BaseController).Assembly;
             var baseControllerApi = (Api.Controllers.BaseController)assembly.CreateInstance("Template.Api.Api.Controllers.BaseController");

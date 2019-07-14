@@ -5,6 +5,8 @@ using Log4net.Helper.Logging;
 using Template.Api.Api.Configuration;
 using Swashbuckle.Swagger.Annotations;
 using Autofac;
+using Template.Api.Api.Filters;
+
 namespace Template.Api.Api.Controllers
 {
     [RoutePrefix("api")]
@@ -36,10 +38,11 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.NotFound, Type = typeof(string))]
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
         [Route("Version")]
+        [VersionCustomFilter]
         [HttpGet]
         public IHttpActionResult Version()
         {            
-            return Ok($"{Settings.BuildVersion.ToString()} {Settings.BuildDate.ToString()}");            
+            return Ok($"{Settings.BuildVersion.ToString()} : : : {Settings.BuildDate.ToString()}");            
         }
         /// <summary>Post generic request message for API.</summary>
         /// <remarks>Post generic request and returns response message from API.

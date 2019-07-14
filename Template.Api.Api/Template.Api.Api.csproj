@@ -118,7 +118,8 @@
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Dependency_Injection\Container.cs" />
+    <Compile Include="App_Start\DiContainer.cs" />
+    <Compile Include="Filters\VersionCustomFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

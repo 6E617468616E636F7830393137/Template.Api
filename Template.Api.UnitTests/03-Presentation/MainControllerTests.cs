@@ -23,11 +23,11 @@ namespace Template.Api.UnitTests._03_Presentation
         public void InitializeApiTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act
             var wa = new Api.WebApiApplication();            
             Api.WebApiConfig.Register(new HttpConfiguration());
-            Api.Dependency_Injection.Container container = new Api.Dependency_Injection.Container();
+            DiContainer container = new DiContainer();
 
             SwaggerConfig.Register();
             
@@ -45,7 +45,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void OptionsControllerTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act
             HttpResponseMessage responseMessage = InitController().Options();
             // Assert
@@ -55,7 +55,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void GetBuildInformationTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             var data = InitController();            
             // Act            
             IHttpActionResult responseMessage = data.Version();
@@ -67,7 +67,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void PostControllerTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Post.";
             IHttpActionResult responseMessage = InitController().PostHelloWorld(inputMessage);
@@ -80,7 +80,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void PutControllerTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Put.";
             IHttpActionResult responseMessage = InitController().PutHelloWorld(inputMessage);
@@ -93,7 +93,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void PatchControllerTest()
         {
             // Arrange
-            Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
+            DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Patch.";
             IHttpActionResult responseMessage = InitController().PatchHelloWorld(inputMessage);
