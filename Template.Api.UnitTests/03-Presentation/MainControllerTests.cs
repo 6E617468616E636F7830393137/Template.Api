@@ -1,17 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Net.Http;
 using System.Web.Http.Results;
 using System.Web;
 using Template.Api.Api;
-using Template.Api.Bll.BuildInformation;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
 namespace Template.Api.UnitTests._03_Presentation
-{    
+{
     [TestClass]
     public class MainControllerTests
     {
@@ -40,9 +38,7 @@ namespace Template.Api.UnitTests._03_Presentation
         public void MainControllerTest()
         {
             Api.Configuration.ISettings settings = new Api.Configuration.Settings();
-            IBuildData buildData = new BuildData();
-            Bll.BusinessTemplate.IClass iClass = new Bll.BusinessTemplate.Class();
-            var controller = new Api.Controllers.MainController(iClass, buildData, settings);
+            var controller = new Api.Controllers.MainController(settings);
 
         }        
         [TestMethod]
@@ -60,14 +56,9 @@ namespace Template.Api.UnitTests._03_Presentation
         {
             // Arrange
             Template.Api.Api.Dependency_Injection.Container.Initialize(new HttpConfiguration());
-            var data = InitController();
-            var buildData = data.BuildData;
-            buildData.setBuidInformation(
-                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(),
-                DateTime.Now.ToString()
-                );
+            var data = InitController();            
             // Act            
-            IHttpActionResult responseMessage = data.BuildVersion();
+            IHttpActionResult responseMessage = data.Version();
             // Assert
             var responseMessageContent = ((OkNegotiatedContentResult<string>)(responseMessage)).Content;
             Assert.IsNotNull(responseMessageContent);
@@ -119,8 +110,6 @@ namespace Template.Api.UnitTests._03_Presentation
             var request = new HttpRequestMessage();
             var configuration = new HttpConfiguration();
             var requestContext = new HttpRequestContext();
-            // Adding header
-            request.Headers.Add("test", "test");
 
             controllerContext.Request = request;
             controllerContext.RequestContext = requestContext;

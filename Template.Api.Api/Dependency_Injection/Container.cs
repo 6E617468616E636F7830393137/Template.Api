@@ -30,8 +30,8 @@ namespace Template.Api.Api.Dependency_Injection
             // Presentation Layer class registry
             builder.RegisterType<Configuration.Settings>().As<Configuration.ISettings>();
             // Buisiness Layer class registry
-            builder.RegisterType<Bll.BusinessTemplate.Class>().As<Bll.BusinessTemplate.IClass>();
-            builder.RegisterType<Bll.BuildInformation.BuildData>().As<Bll.BuildInformation.IBuildData>();
+            // builder.RegisterType<Bll.BusinessTemplate.Class>().As<Bll.BusinessTemplate.IClass>();
+            // builder.RegisterType<Bll.BuildInformation.BuildData>().As<Bll.BuildInformation.IBuildData>();
             // Register Dynamic Assemblies            
             // var service = Assembly.Load("<DLL_NAME>");
             // builder.RegisterAssemblyTypes(service).AsImplementedInterfaces();

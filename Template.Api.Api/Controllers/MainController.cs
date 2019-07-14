@@ -3,8 +3,6 @@ using System.Net.Http;
 using System.Web.Http;
 using Log4net.Helper.Logging;
 using Template.Api.Api.Configuration;
-using Template.Api.Bll.BuildInformation;
-using Template.Api.Bll.BusinessTemplate;
 using Swashbuckle.Swagger.Annotations;
 using Autofac;
 namespace Template.Api.Api.Controllers
@@ -12,21 +10,15 @@ namespace Template.Api.Api.Controllers
     [RoutePrefix("api")]
     public class MainController : BaseController
     {
-        private IClass Class { get; set; }
         public MainController()
             : base()
         {
-            this.Class = Api.Dependency_Injection.Container.container.Resolve<IClass>();
             
         }
         public MainController(
-            IClass Class, 
-            IBuildData buildData,
             ISettings settings) 
-            : base (buildData, settings)            
-        {
-            this.Class = Class;
-            this.BuildData = buildData;
+            : base (settings)            
+        {              
             this.Settings = settings;
             Logger.Info($": : : Calling MainController Constructor : : :");
         }
@@ -43,13 +35,11 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.BadRequest, Type = typeof(string))]
         [SwaggerResponse(System.Net.HttpStatusCode.NotFound, Type = typeof(string))]
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
-        [Route("BuildVersion")]
+        [Route("Version")]
         [HttpGet]
-        public IHttpActionResult BuildVersion()
+        public IHttpActionResult Version()
         {            
-            return Ok($"{BuildData.getBuildInformation().BuildVersion} " +
-                $"({BuildData.getBuildInformation().BuildDate}) " +
-                $"{Settings.DisableSwagger}");            
+            return Ok($"{Settings.BuildVersion.ToString()} {Settings.BuildDate.ToString()}");            
         }
         /// <summary>Post generic request message for API.</summary>
         /// <remarks>Post generic request and returns response message from API.
@@ -68,7 +58,7 @@ namespace Template.Api.Api.Controllers
         [HttpPost]
         public IHttpActionResult PostHelloWorld([FromBody] string message)
         {
-            return Ok($"{Class.GetInfo()} :: {message}");
+            return Ok($"{message}");
         }
         /// <summary>Put generic request message for API.</summary>
         /// <remarks>Put generic request and returns response message from API.
@@ -87,7 +77,7 @@ namespace Template.Api.Api.Controllers
         [HttpPut]
         public IHttpActionResult PutHelloWorld([FromBody] string message)
         {
-            return Ok($"{Class.GetInfo()} :: {message}");
+            return Ok($"{message}");
         }
         /// <summary>Patch generic request message for API.</summary>
         /// <remarks>Patch generic request and returns response message from API.
@@ -106,7 +96,7 @@ namespace Template.Api.Api.Controllers
         [HttpPatch]
         public IHttpActionResult PatchHelloWorld([FromBody] string message)
         {
-            return Ok($"{Class.GetInfo()} :: {message}");
+            return Ok($"{message}");
         }
         /// <summary>Options for returning response code for request.</summary>
         /// <remarks>Options for returning response code for request.  Used for preflight requests.
