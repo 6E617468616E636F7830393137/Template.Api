@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00-Assemblies", "00-Assemblies", "{12068D8E-3EF6-4847-B5BE-1E49141D6001}"
 	ProjectSection(SolutionItems) = preProject
 		Template.Api.Assemblies\Log4net.Helper.Logging.dll = Template.Api.Assemblies\Log4net.Helper.Logging.dll
+		Template.Api.Assemblies\WebMethods.Bll.dll = Template.Api.Assemblies\WebMethods.Bll.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Api.Dal", "Template.Api.Dal\Template.Api.Dal.csproj", "{ABE21E81-321D-4D5E-BF9A-C671CC5A4EC7}"

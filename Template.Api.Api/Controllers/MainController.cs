@@ -6,6 +6,7 @@ using Template.Api.Api.Configuration;
 using Swashbuckle.Swagger.Annotations;
 using Autofac;
 using Template.Api.Api.Filters;
+using System.Threading.Tasks;
 
 namespace Template.Api.Api.Controllers
 {
@@ -40,8 +41,9 @@ namespace Template.Api.Api.Controllers
         [Route("Version")]
         [VersionCustomFilter]
         [HttpGet]
-        public IHttpActionResult Version()
-        {            
+        public async Task<IHttpActionResult> Version()
+        {         
+            
             return Ok($"{Settings.BuildVersion.ToString()} : : : {Settings.BuildDate.ToString()}");            
         }
         /// <summary>Post generic request message for API.</summary>
@@ -59,7 +61,7 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
         [Route("HelloWorld")]
         [HttpPost]
-        public IHttpActionResult PostHelloWorld([FromBody] string message)
+        public async Task<IHttpActionResult> PostHelloWorld([FromBody] string message)
         {
             return Ok($"{message}");
         }
@@ -78,9 +80,9 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
         [Route("HelloWorld")]
         [HttpPut]
-        public IHttpActionResult PutHelloWorld([FromBody] string message)
+        public async Task<IHttpActionResult> PutHelloWorld([FromBody] string message)
         {
-            return Ok($"{message}");
+            return Ok("");
         }
         /// <summary>Patch generic request message for API.</summary>
         /// <remarks>Patch generic request and returns response message from API.
@@ -97,7 +99,7 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
         [Route("HelloWorld2")]
         [HttpPatch]
-        public IHttpActionResult PatchHelloWorld([FromBody] string message)
+        public async Task<IHttpActionResult> PatchHelloWorld([FromBody] string message)
         {
             return Ok($"{message}");
         }
@@ -116,7 +118,7 @@ namespace Template.Api.Api.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.InternalServerError, Type = typeof(string))]
         [AcceptVerbs("OPTIONS")]
         [Route("HelloWorld2")]
-        public HttpResponseMessage Options()
+        public async Task<HttpResponseMessage> Options()
         {
             var resp = new HttpResponseMessage(HttpStatusCode.OK);
             resp.Headers.Add("Access-Control-Allow-Origin", "*localhost:007");

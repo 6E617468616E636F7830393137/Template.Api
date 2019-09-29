@@ -47,7 +47,7 @@ namespace Template.Api.UnitTests._03_Presentation
             // Arrange
             DiContainer.Initialize(new HttpConfiguration());
             // Act
-            HttpResponseMessage responseMessage = InitController().Options();
+            HttpResponseMessage responseMessage = InitController().Options().Result;
             // Assert
             Assert.AreEqual(responseMessage.IsSuccessStatusCode, true);
         }        
@@ -58,7 +58,7 @@ namespace Template.Api.UnitTests._03_Presentation
             DiContainer.Initialize(new HttpConfiguration());
             var data = InitController();            
             // Act            
-            IHttpActionResult responseMessage = data.Version();
+            IHttpActionResult responseMessage = data.Version().Result;
             // Assert
             var responseMessageContent = ((OkNegotiatedContentResult<string>)(responseMessage)).Content;
             Assert.IsNotNull(responseMessageContent);
@@ -70,7 +70,7 @@ namespace Template.Api.UnitTests._03_Presentation
             DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Post.";
-            IHttpActionResult responseMessage = InitController().PostHelloWorld(inputMessage);
+            IHttpActionResult responseMessage = InitController().PostHelloWorld(inputMessage).Result;
             // Assert
             var outputMessage = $"Hello World :: {inputMessage}";
             var responseMessageContent = ((OkNegotiatedContentResult<string>)(responseMessage)).Content;
@@ -83,7 +83,7 @@ namespace Template.Api.UnitTests._03_Presentation
             DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Put.";
-            IHttpActionResult responseMessage = InitController().PutHelloWorld(inputMessage);
+            IHttpActionResult responseMessage = InitController().PutHelloWorld(inputMessage).Result;
             // Assert
             var outputMessage = $"Hello World :: {inputMessage}";
             var responseMessageContent = ((OkNegotiatedContentResult<string>)(responseMessage)).Content;
@@ -96,7 +96,7 @@ namespace Template.Api.UnitTests._03_Presentation
             DiContainer.Initialize(new HttpConfiguration());
             // Act            
             var inputMessage = "Unit Test for Patch.";
-            IHttpActionResult responseMessage = InitController().PatchHelloWorld(inputMessage);
+            IHttpActionResult responseMessage = InitController().PatchHelloWorld(inputMessage).Result;
             // Assert
             var outputMessage = $"Hello World :: {inputMessage}";
             var responseMessageContent = ((OkNegotiatedContentResult<string>)(responseMessage)).Content;
